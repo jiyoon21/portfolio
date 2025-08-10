@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Calculator</title>
+    <link rel="stylesheet" href="css/design.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ce7da78fa9.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <nav><a src="index.html"><span id="logo"> Sleep Calculator</span></a>
+    </nav>
+    <div class="main">
+        <div class="grid-container">
+            <div id="col2" class="col2 sm1 md1">
+                <h1>SETUP</h1>
+                <h2>You want to wake up at</h2>
+                <form id="form1" action="">
+                    <div class="time-wrapper">
+                        <input class="blank" id="sethour" type="text" name="smin" value="7" required>
+                        <span class="dots">:</span>
+                        <input class="blank" id="setmin" type="text" name="smin" value="30" required>
+
+                    </div>
+
+                    <br>
+                    <input id="button" type="button" onclick="checkForm()" value="View Time">
+                </form>
+                <div class="caption-cont">
+                    <p>Set up time you want to wake up. <br>You can get recommended sleep time based on 90 minute sleep cycle that helps you wake up refreshed.
+                    </p>
+                </div>
+            </div>
+            <div id="col2" class="col2 sm1 md1">
+                <h1>YOUR SLEEP TIME</h1>
+                <h2>You should go to bed at</h2>
+                <div class="c2-r3">
+                    <div class="c1">
+                        <div class="cell1" id="recomend">
+                            <p class="time" id="res6"></p>
+                            <p class="sm-dis"> 9 hours of sleep</p>
+
+                        </div>
+                        <div class="cell1" id="recomend">
+                            <i id="icon" class="fas fa-thumbs-up"></i>
+                            <p class="time" id="res5"></p>
+                            <p class="sm-dis">7.5 hours of sleep</p>
+                        </div>
+                        <div class="cell1" id="recomend">
+                            <i id="icon" class="fas fa-thumbs-up"></i>
+                            <p class="time" id="res4"> </p>
+                            <p class="sm-dis"> 6 hours of sleep</p>
+                        </div>
+                    </div>
+                    <div class="c1">
+                        <div class="cell1">
+                            <p class="time" id="res3"></p>
+                            <p class="sm-dis"> 4.5 hours of sleep</p>
+                        </div>
+                        <div class="cell1">
+                            <p class="time" id="res2"></p>
+                            <p class="sm-dis"> 2 hours of sleep</p>
+                        </div>
+                        <div class="cell1">
+                            <p class="time" id="res1"></p>
+                            <p class="sm-dis"> 1.5 hours of sleep</p>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+        <footer>
+        </footer>
+    </div>
+    <script src="js.js"></script>
+</body></html>
