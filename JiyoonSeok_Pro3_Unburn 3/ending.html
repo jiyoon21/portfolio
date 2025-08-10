@@ -1,0 +1,119 @@
+<!--index.html-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unburn: Interactive Web</title>
+    <link rel="stylesheet" href="css/design.css">
+
+    <!--icon-->
+    <script src="https://kit.fontawesome.com/ce7da78fa9.js" crossorigin="anonymous"></script>
+
+    <!--font embeded-->
+    <link href="https://fast.fonts.net/cssapi/f03508df-a337-46e9-b814-a214935977b9.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://fast.fonts.net/jsapi/f03508df-a337-46e9-b814-a214935977b9.js"></script>
+
+
+</head>
+
+<body>
+    <script src="js/three.min.js"></script>
+    <script src="js/Detector.js"></script>
+    <script src="js/ColladaLoader.js"></script>
+
+    <!--header with logo-->
+    <header>
+        <div class="logo-con"><img class="logo-svg" src="img/logo.svg" alt="logo image"></div>
+        <div class="logo txt">unburn</div>
+    </header>
+    <div class="hero">
+        <h1>You&#39;ve save the world <i class="far fa-smile-wink" id="blue-icon"></i></h1><br>
+        <p>It&#39;s warming<br>
+            It&#39;s us<br>
+            We&#39;re sure<br>
+            It&#39;s bad<br>
+            We can fix it</p>
+    </div>
+    <footer>
+        <p>More information on extreme heat</p>
+        <a href="https://350.org/science/"><button> Visit 350.org</button></a>
+    </footer>
+    <!--3D model loader-->
+    <script>
+        var scene, camera, renderer, model;
+
+        function init() {
+            //add detector to see if WebGL is supported
+            if (!Detector.webgl) Detector.addGetWebGLMessage();
+            //set up a scene
+            scene = new THREE.Scene();
+            //add a camera
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            //render the scene - start renderer and set it's size
+            renderer = new THREE.WebGLRenderer({
+                antialias: true
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0xcaf8f1, 1);
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            //add to webpage
+            document.body.appendChild(renderer.domElement);
+
+            var light = new THREE.DirectionalLight(0xffffff, 2);
+            light.position.set(1, 1, 1).normalize();
+            scene.add(light);
+
+
+            //dae file loading
+            var loader = new THREE.ColladaLoader();
+            loader.options.convertUpAxis = true;
+            loader.load('scene.dae', function(collada) {
+                var dae = collada.scene;
+                dae.scale.x = dae.scale.y = dae.scale.z = 1;
+                dae.updateMatrix();
+                scene.add(dae);
+
+                render();
+            });
+
+            //position camera
+            camera.position.set(0, 20, 0);
+            //render the scene
+            render();
+        }
+
+        function render() {
+            //call to render scene 60fps
+            requestAnimationFrame(render);
+            camera.lookAt(scene.position);
+
+            //speed
+            var timer = Date.now() * 0.0001;
+
+            //distance
+            camera.position.x = Math.cos(timer) * 200;
+            camera.position.z = Math.sin(timer) * 300;
+            camera.position.y = 100;
+            camera.lookAt(scene.position);
+
+            //keep displaying scene
+            renderer.render(scene, camera);
+        }
+
+        //call the init function to run the code
+        init();
+
+    </script>
+
+
+
+    <!--js file embeded-->
+    <script src="function.js"></script>
+
+
+</body>
+
+</html>
